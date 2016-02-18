@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+[[ "$TRACE" ]] && set -x
+set -eu -o pipefail
+
+docker run \
+	--name bind \
+	--detach \
+	--publish 53:53/udp --publish 10000:10000 \
+	--volume $PWD/data:/data \
+	bind:latest
